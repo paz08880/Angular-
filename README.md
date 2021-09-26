@@ -1,4 +1,2 @@
-# Angular
-##Angular projects
+# Angular projects
 
-# Angular
