@@ -159,7 +159,7 @@ export class AppComponent {
   ];
 
    selectedBackground = 0;
-   background:number = 0;
+   background:string = '';
    colorNumber = 0;
    backgroundSelected = '';
   changeBg(){
@@ -172,6 +172,11 @@ export class AppComponent {
   randomInteger(min:number, max:number) {
     let color = Math.floor(Math.random() * (max - min + 1)) + min;
     return color;
+  }
+
+  colorClick(value: string){
+    console.log(value);
+    this.background = value;
   }
 
 

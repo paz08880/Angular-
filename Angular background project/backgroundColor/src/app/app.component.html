@@ -1,12 +1,12 @@
 <body [style.backgroundColor] = "colors[colorNumber]">
-<div class = "box">
+<div [style.backgroundColor] = "background " class = "box">
   <h1> {{title}} </h1><br><br>
   <button (click) = "changeBg()">Change background</button>
  <br> <p> {{backgroundSelected}} </p>
 </div>
-<div class = "grid">
+<div  class = "grid">
   <ul>
-    <li *ngFor = "let color of colors">{{color}}</li>
+    <li (click) = "colorClick(color)" *ngFor = "let color of colors">{{color}}</li>
   </ul>
 </div>
 </body>

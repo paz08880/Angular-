@@ -42,6 +42,10 @@ h1{
 li{
   padding:2px;
 }
+li:hover{
+  background-color: greenyellow;
+  cursor:pointer;
+}
 .grid, ul{
   list-style: none;
   display: grid;
