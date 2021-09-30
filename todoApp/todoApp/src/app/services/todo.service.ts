@@ -21,6 +21,15 @@ export class TodoService {
   constructor() { }
 
   public getTodos():Observable<Array<ITodo>>{
+    if(!this._todoSubject.value.length) {
+      const todosString = localStorage.getItem("todos");
+      if(todosString){
+        const exitistingTodos = JSON.parse(todosString)
+        exitistingTodos[0].selected = true;
+        this._todoSubject.next(exitistingTodos);
+        this.singleTodoSubject.next(exitistingTodos[0]);
+      }
+    }
       return this._todoSubject.asObservable();
   }
 
@@ -39,5 +48,19 @@ export class TodoService {
     const exitistingTodos: Array<ITodo> = this._todoSubject.value;
     exitistingTodos.push(newTodo);
     this._todoSubject.next(exitistingTodos);
+    localStorage.setItem("todos",JSON.stringify(exitistingTodos));
   }
+
+  public onTodoAction(todoId: string, action: string):void{
+    const existingTodos: Array<ITodo> = this._todoSubject.value;
+
+    const todoIndex = existingTodos.findIndex(singleTodo => singleTodo.id ,todoId);
+    existingTodos[todoIndex][action] = true;
+    this._todoSubject.next(existingTodos);
+    localStorage.setItem("todos",JSON.stringify(existingTodos));
+
+  }
+
+
+
 }

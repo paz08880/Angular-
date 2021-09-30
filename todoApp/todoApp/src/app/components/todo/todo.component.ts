@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 import { ITodo } from 'src/app/models/todo.interface';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-
+import { TodoService } from 'src/app/services/todo.service';
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
@@ -18,7 +18,7 @@ export class TodoComponent implements OnInit,OnDestroy {
   }
   private _todo: ITodo;
 
-  constructor() { }
+  constructor(private TodoService: TodoService) {}
 
   private subscription: Subscription = new Subscription();
 
@@ -33,10 +33,12 @@ export class TodoComponent implements OnInit,OnDestroy {
 
   public onCompleteTodo(todo:ITodo){
     todo.isCompleted = true;
+    this.TodoService.onTodoAction(todo.id, "isCompleted");
     }
 
   public onArchiveTodo(todo:ITodo){
       todo.isArchived = true;
+      this.TodoService.onTodoAction(todo.id, "isArchived = true");
 
       }
 

@@ -1,7 +1,14 @@
 .selected{
+  background-color: #fff;
+}
+mat-card{
   background-color: rgba(0,0,0,0.25);
+  cursor:pointer;
 }
 .completed{
   text-decoration: line-through;
+}
+.item-wrap{
+  padding-bottom:20px;
 }
 

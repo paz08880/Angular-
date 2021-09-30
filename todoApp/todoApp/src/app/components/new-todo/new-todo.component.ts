@@ -21,8 +21,8 @@ export class NewTodoComponent implements OnInit {
   public onNewTodoSubmit(){
     //create a new todo object
     //send object to service
-
-    const formValues = this.form.form.value;
+      if(this.form.valid){
+        const formValues = this.form.form.value;
     const newTodo:ITodo = {
       id: uuidv4(),
       title:formValues.title,
@@ -35,6 +35,8 @@ export class NewTodoComponent implements OnInit {
     this.TodoService.addNewTodo(newTodo);
     this.dialog.closeAll();
     console.log(newTodo);
+
+  }
 
   }
 
