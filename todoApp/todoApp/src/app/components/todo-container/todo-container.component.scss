@@ -1,0 +1,21 @@
+.todos-container{
+  padding:10px;
+  min-height:calc(100vh - 84px);
+  display:flex;
+  gap:10px;
+}
+.list-container{
+  min-width:25%;
+  padding:25px;
+  cursor:pointer;
+}
+
+.todo-container{
+  width:75%;
+  padding:25px;
+}
+.addNewTodo{
+  position:fixed;
+  bottom:30px;
+  right:30px;
+}
