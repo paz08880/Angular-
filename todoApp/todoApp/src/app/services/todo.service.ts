@@ -7,61 +7,16 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 })
 export class TodoService {
 
+  private todos: Array<ITodo> = [];
 
-  private mock: ITodo[] = [
-    {
-      id : 1,
-      title: 'Creeper, black-tailed tree',
-      description: 'Climacteris melanura',
-      isCompleted: false,
-      isArchived: false,
-      endDate: '11/1/2020',
-      selected:true,
-    },
-    {
-      id : 2,
-      title: "Genoveva",
-      description: "Junonia genoveua",
-      isCompleted: false,
-      isArchived: false,
-      endDate: "5/23/2021",
-      selected:false,
 
-    },
-    {
-      id : 3,
-      title: "Madagascar fruit bat",
-      description: "Pteropus rufus",
-      isCompleted: false,
-      isArchived: false,
-      endDate: "6/2/2021",
-      selected:false,
+  private _todoSubject : BehaviorSubject<Array<ITodo>> = new BehaviorSubject(
+    this.todos
+    );
 
-    },
-    {
-      id : 4,
-      title: "Crested bunting",
-      description: "Melophus lathami",
-      isCompleted: false,
-      isArchived: false,
-      endDate: "6/22/2021",
-      selected:false,
-
-    },
-    {
-      id : 5,
-      title: "Cottonmouth",
-      description: "Agkistrodon piscivorus",
-      isCompleted: false,
-      isArchived: false,
-      endDate: "7/26/2021",
-      selected:false,
-    }
-  ]
-
-  private _todoSubject : BehaviorSubject<Array<ITodo>> = new BehaviorSubject(this.mock);
-
-  private singleTodoSubject:BehaviorSubject<ITodo> = new BehaviorSubject(this.mock[0]);
+  private singleTodoSubject:BehaviorSubject<ITodo> = new BehaviorSubject(
+    this.todos.length ? this.todos[0]: null
+    );
 
   constructor() { }
 
@@ -75,5 +30,14 @@ export class TodoService {
 
   public setSelectedTodo(todo:ITodo){
    this.singleTodoSubject.next(todo)
+  }
+
+  public addNewTodo(newTodo:ITodo): void{
+    //take exiting todos
+    //add new todo to exist todos
+    //trigger next tic in obs
+    const exitistingTodos: Array<ITodo> = this._todoSubject.value;
+    exitistingTodos.push(newTodo);
+    this._todoSubject.next(exitistingTodos);
   }
 }
